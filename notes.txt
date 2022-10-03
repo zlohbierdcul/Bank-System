@@ -1,8 +1,4 @@
-# Bank-System
- PR2 Testat
-
 Auffälligkeiten / Fragen:
-
     - Wofür facade, domain?
         (Vermutung: für "Sicherheit", dass bsw. der Kontostand nicht von außerhalb manipuliert werden kann.)
     - Was genau versteht man unter einer Collection?
