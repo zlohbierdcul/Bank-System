@@ -33,7 +33,13 @@ public class UI {
 				System.out.println();
 
 				System.out.print("> ");
-				int input = Integer.parseInt(sc.nextLine());
+
+				int input = 0;
+				try {
+					input = Integer.parseInt(sc.nextLine());
+				} catch (Exception e) {
+					System.out.println(e);
+				}
 				System.out.println();
 
 				switch(input) {
@@ -64,7 +70,15 @@ public class UI {
 
 		System.out.println("Wieviel möchten sie aufladen? (nur ganze Beträge)!");
 		System.out.print("> ");
-		int input = Integer.parseInt(sc.nextLine());
+
+		int input = 0;
+		try {
+			input = Integer.parseInt(sc.nextLine());
+		} catch (Exception e) {
+			System.out.println("Bitte geben Sie einen gültigen Betrag ein!");
+			kontoAufladen();
+
+		}
 		konto.addGuthaben(input);
 		System.out.println("\n" + input + "€ wurden aufgeladen!");
 		System.out.println("Ihr aktueller Kontostand beträgt " + konto.getGuthaben() + "€");
@@ -78,7 +92,14 @@ public class UI {
 //		kontenAnzeigen();
 
 		System.out.print("\n> ");
-		int input = Integer.parseInt(sc.nextLine());
+		int input = 0;
+		try {
+			input = Integer.parseInt(sc.nextLine());
+
+		} catch (Exception e) {
+//			System.out.println("An Error occured: " + e);
+		};
+
 
 		if (bs.getKonto(input) == null) {
 			selectKonto();

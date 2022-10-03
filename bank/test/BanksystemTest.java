@@ -12,9 +12,9 @@ public class BanksystemTest {
     @Test
     void BanksystemTest() {
         Banksystem bs = new Banksystem("Testbank");
-
         int kontoNummer = bs.kontoAnlegen("Hans");
+        Konto testKonto = bs.getKonto(kontoNummer);
 
-        assertNotNull(bs.getKonto(kontoNummer));
+        assertEquals(testKonto.getKontonummer(), kontoNummer);
     }
 }
