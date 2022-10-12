@@ -10,11 +10,46 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BanksystemTest {
 
     @Test
-    void BanksystemTest() {
+    void getKontoTest() {
         Banksystem bs = new Banksystem("Testbank");
         int kontoNummer = bs.kontoAnlegen("Hans");
         Konto testKonto = bs.getKonto(kontoNummer);
 
         assertEquals(testKonto.getKontonummer(), kontoNummer);
     }
+
+    @Test
+    void eineAufladungTest() {
+        Banksystem bs = new Banksystem("Testbank");
+        int kontonummer = bs.kontoAnlegen("Hans");
+        Konto testKonto = bs.getKonto(kontonummer);
+
+        long tempGuthaben = testKonto.getGuthaben();
+        testKonto.addGuthaben(1000);
+        assertEquals(1000 + tempGuthaben , testKonto.getGuthaben());
+    }
+
+    @Test
+    void zweiAufladungenTest() {
+        Banksystem bs = new Banksystem("Testbank");
+        int kontonummer = bs.kontoAnlegen("Hans");
+        Konto testKonto = bs.getKonto(kontonummer);
+
+        long tempGuthaben = testKonto.getGuthaben();
+        testKonto.addGuthaben(1000);
+        testKonto.addGuthaben(1000);
+        assertEquals(1000 + 1000 + tempGuthaben , testKonto.getGuthaben());
+    }
+
+    @Test
+    void negativAufladungenTest() {
+        Banksystem bs = new Banksystem("Testbank");
+        int kontonummer = bs.kontoAnlegen("Hans");
+        Konto testKonto = bs.getKonto(kontonummer);
+
+        long tempGuthaben = testKonto.getGuthaben();
+        testKonto.addGuthaben(- 1000);
+        assertEquals(-1000 + tempGuthaben , testKonto.getGuthaben());
+    }
+
 }

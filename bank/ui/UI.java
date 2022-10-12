@@ -28,7 +28,7 @@ public class UI {
 				System.out.println("1 -> Konten anzeigen");
 				System.out.println("2 -> Konto anlegen");
 				System.out.println("3 -> Geld einzahlen");
-				System.out.println("4 -> Guthaben");
+				System.out.println("4 -> Guthaben ausgeben");
 				System.out.println("9 -> Beenden");
 				System.out.println();
 
@@ -72,18 +72,21 @@ public class UI {
 		System.out.print("> ");
 
 		int input = 0;
+
 		try {
 			input = Integer.parseInt(sc.nextLine());
 		} catch (Exception e) {
 			System.out.println("Bitte geben Sie einen gültigen Betrag ein!");
 			kontoAufladen();
-
 		}
-		konto.addGuthaben(input);
-		System.out.println("\n" + input + "€ wurden aufgeladen!");
-		System.out.println("Ihr aktueller Kontostand beträgt " + konto.getGuthaben() + "€");
-		System.out.println("Drücken Sie ENTER um zum Hauptmenu zurück zu kehren!");
-		sc.nextLine();
+
+		if (input != 0) {
+			konto.addGuthaben(input);
+			System.out.println("\n" + input + "€ wurden aufgeladen!");
+			System.out.println("Ihr aktueller Kontostand beträgt " + konto.getGuthaben() + "€");
+			System.out.println("Drücken Sie ENTER um zum Hauptmenu zurück zu kehren!");
+			sc.nextLine();
+		}
 	}
 
 	private Konto selectKonto() {
@@ -100,12 +103,13 @@ public class UI {
 //			System.out.println("An Error occured: " + e);
 		};
 
+		Konto konto = bs.getKonto(input);
 
-		if (bs.getKonto(input) == null) {
+		if (konto == null) {
 			selectKonto();
 		}
 
-		return bs.getKonto(input);
+		return konto;
 	}
 
 	private void kontenAnzeigen() {		
